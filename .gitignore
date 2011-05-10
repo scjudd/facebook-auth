@@ -1,0 +1,5 @@
+*.sqlite
+*.pyc
+*.swp
+.private-settings
+media/*
