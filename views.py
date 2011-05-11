@@ -49,5 +49,7 @@ def login(request):
     elif 'error_reason' in request.GET:
       error = 'AUTH_DENIED'
 
-  template_context = {'settings': settings, 'error': error}
+  facebook_url = "https://graph.facebook.com/oauth/authorize?client_id=%s&redirect_uri=%s&scope=%s&display=popup" % (settings.FACEBOOK_APP_ID, settings.FACEBOOK_REDIRECT_URI, ','.join(settings.FACEBOOK_PERMISSIONS))
+
+  template_context = {'facebook_url': facebook_url, 'error': error}
   return render_to_response('login.html', template_context, context_instance=RequestContext(request))
