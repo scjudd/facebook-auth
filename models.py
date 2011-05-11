@@ -43,3 +43,6 @@ class FacebookSession(models.Model):
       error = response['error']
       raise FacebookSessionError(error['type'], error['message'])
     return response
+
+  def __unicode__(self):
+    return u'%s' % self.uid

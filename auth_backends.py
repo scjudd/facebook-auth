@@ -1,10 +1,9 @@
 from django.conf import settings
 from django.contrib.auth import models as auth_models
+from facebook import models
 
 import urllib
 import simplejson
-
-from facebook import models
 
 class FacebookBackend:
   def authenticate(self, token=None):
@@ -20,9 +19,9 @@ class FacebookBackend:
       user = auth_models.User(username=profile['id'])
 
     user.set_unusable_password()
-    user.email = profile['email']
     user.first_name = profile['first_name']
     user.last_name = profile['last_name']
+    user.email = profile['email']
     user.save()
 
     try:
